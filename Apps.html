@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Apps</title>
+    <link rel="stylesheet" href="Style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="myFunctions.js" defer></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>AI's Apps 🤖</h1>
+      <p class="subtitle">تطبيقات الذكاء الاصطناعي</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section>
+        <h2>📋 قائمة التطبيقات</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>اسم التطبيق</th>
+              <th>الشركة المطورة</th>
+              <th>مجال الاستخدام</th>
+              <th>مجاني</th>
+              <th>التفاصيل</th>
+            </tr>
+          </thead>
+          <tbody id="appsTable">
+            <!-- Apps will be added here -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <nav>
+        <a href="index.html"><span class="icon">🏠</span><span>Home</span></a>
+        <a href="AboutUs.html"
+          ><span class="icon">ℹ️</span><span>About Us</span></a
+        >
+        <a href="add_app.html"
+          ><span class="icon">➕</span><span>Add App</span></a
+        >
+      </nav>
+      <p class="copy">© 2025 AI Apps Project</p>
+    </footer>
+
+    <!-- Apps Display Script -->
+    <script>
+      window.onload = function () {
+        const table = document.getElementById("appsTable");
+        let apps = JSON.parse(localStorage.getItem("appsList")) || [];
+
+        apps.forEach((app) => {
+          const row = table.insertRow();
+          row.innerHTML = `
+            <td>${app.name}</td>
+            <td>${app.company}</td>
+            <td>${app.field}</td>
+            <td class="free-cell">
+              ${app.free === "مجاني" ? "☑️" : ""}
+            </td>
+            <td><button onclick="toggleDetails(this)">اختر</button></td>
+          `;
+
+          const detailsRow = table.insertRow();
+          detailsRow.className = "details";
+          detailsRow.style.display = "none";
+          detailsRow.innerHTML = `
+            <td colspan="5">
+              <p>🌐 الموقع: <a href="${app.url}" target="_blank">${
+            app.url
+          }</a></p>
+              <p>📖 شرح: ${app.desc}</p>
+              ${
+                app.image
+                  ? `<p>🖼️ <img src="${app.image}" alt="صورة التطبيق" style="max-width:200px; border:1px solid #ccc; border-radius:6px;"></p>`
+                  : ""
+              }
+              ${
+                app.video
+                  ? app.video.includes("youtube.com") ||
+                    app.video.includes("youtu.be")
+                    ? `<p>🎬 
+                        <iframe width="300" height="200" 
+                          src="${app.video
+                            .replace("watch?v=", "embed/")
+                            .replace("youtu.be/", "youtube.com/embed/")}" 
+                          frameborder="0" allowfullscreen>
+                        </iframe>
+                       </p>`
+                    : `<p>🎬 
+                        <video src="${app.video}" controls 
+                          style="max-width:300px; border-radius:6px;">
+                        </video>
+                       </p>`
+                  : ""
+              }
+            </td>
+          `;
+        });
+      };
+    </script>
+  </body>
+</html>

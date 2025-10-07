@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Apps</title>
+    <link rel="stylesheet" href="Style.css" />
+    <script src="myFunctions.js" defer></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>Add New App</h1>
+      <p class="subtitle">املأ الحقول التالية لإضافة تطبيقك إلى القائمة</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section>
+        <form id="appForm">
+          <label>
+            اسم التطبيق (بالإنجليزية بدون فراغات):
+            <input type="text" id="appName" required />
+          </label>
+
+          <label>
+            اسم الشركة (بالإنجليزية فقط):
+            <input type="text" id="company" required />
+          </label>
+
+          <label>
+            الموقع الإلكتروني:
+            <input type="url" id="website" required />
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="isFree" />
+            مجاني؟
+          </label>
+
+          <label>
+            مجال الاستخدام:
+            <select id="field">
+              <option value="general">General</option>
+              <option value="productivity">Productivity</option>
+              <option value="design">Design</option>
+              <option value="development">Development</option>
+              <option value="marketing">Marketing</option>
+              <option value="writing">Writing</option>
+              <option value="research">Research</option>
+              <option value="education">Education</option>
+              <option value="ecommerce">E-commerce</option>
+              <option value="robotics">Robotics</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="finance">Finance</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+
+          <label>
+            شرح مختصر:
+            <textarea id="desc" required></textarea>
+          </label>
+
+          <label>
+            رابط صورة التطبيق:
+            <input type="url" id="appImage" />
+          </label>
+
+          <label>
+            رابط فيديو قصير (YouTube أو MP4):
+            <input type="url" id="appVideo" />
+          </label>
+
+          <div class="form-buttons">
+            <button type="submit">إرسال</button>
+            <button type="reset" class="reset-btn">مسح</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <nav>
+        <a href="index.html"><span class="icon">🏠</span><span>Home</span></a>
+        <a href="AboutUs.html"
+          ><span class="icon">ℹ️</span><span>About Us</span></a
+        >
+        <a href="apps.html"><span class="icon">🤖</span><span>AI Apps</span></a>
+      </nav>
+      <p class="copy">© 2025 AI Apps Project</p>
+    </footer>
+
+    <script>
+      document
+        .getElementById("appForm")
+        .addEventListener("submit", function (event) {
+          validateForm(event);
+        });
+    </script>
+  </body>
+</html>
