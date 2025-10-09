@@ -37,7 +37,7 @@ function validateForm(event) {
 
   localStorage.setItem("appsList", JSON.stringify(apps));
 
-  window.location.href = "apps.html";
+  window.location.href = "Apps.html";
 }
 
 function toggleDetails(button) {
