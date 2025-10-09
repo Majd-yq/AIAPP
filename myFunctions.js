@@ -1,5 +1,5 @@
 function validateForm(event) {
-  event.preventDefault(); // منع الإرسال التقليدي
+  event.preventDefault();
 
   const name = document.getElementById("appName").value.trim();
   const company = document.getElementById("company").value.trim();
@@ -31,26 +31,20 @@ function validateForm(event) {
     return;
   }
 
-  // جلب التطبيقات السابقة
   let apps = JSON.parse(localStorage.getItem("appsList")) || [];
 
-  // إضافة التطبيق الجديد
-  apps.push({ name, company, url, desc, field, free , image, video });
+  apps.push({ name, company, url, desc, field, free, image, video });
 
-  // حفظ القائمة
   localStorage.setItem("appsList", JSON.stringify(apps));
 
-  // الانتقال إلى صفحة التطبيقات
   window.location.href = "apps.html";
 }
 
 function toggleDetails(button) {
-  const $row = $(button).closest("tr"); // الصف الأساسي
-  const $details = $row.next(".details"); // صف التفاصيل
+  const $row = $(button).closest("tr");
+  const $details = $row.next(".details");
 
-  // إظهار/إخفاء التفاصيل بانسيابية
   $details.slideToggle(300);
 
-  // إضافة/إزالة الـ highlight على الصف الأساسي
   $row.toggleClass("highlight");
 }
